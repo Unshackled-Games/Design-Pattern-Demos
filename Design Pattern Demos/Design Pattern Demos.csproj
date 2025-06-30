@@ -11,8 +11,6 @@
     <ItemGroup>
       <Folder Include="SOLID\Dependency Inversion Principle\Problem\" />
       <Folder Include="SOLID\Dependency Inversion Principle\Solution\" />
-      <Folder Include="SOLID\Interface Segregation Principle\Problem\" />
-      <Folder Include="SOLID\Interface Segregation Principle\Solution\" />
     </ItemGroup>
 
 </Project>
