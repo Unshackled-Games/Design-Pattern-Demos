@@ -13,8 +13,6 @@
       <Folder Include="SOLID\Dependency Inversion Principle\Solution\" />
       <Folder Include="SOLID\Interface Segregation Principle\Problem\" />
       <Folder Include="SOLID\Interface Segregation Principle\Solution\" />
-      <Folder Include="SOLID\Liskov Substitution Principle\Problem\" />
-      <Folder Include="SOLID\Liskov Substitution Principle\Solution\" />
     </ItemGroup>
 
 </Project>
