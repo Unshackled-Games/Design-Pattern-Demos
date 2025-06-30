@@ -15,8 +15,6 @@
       <Folder Include="SOLID\Interface Segregation Principle\Solution\" />
       <Folder Include="SOLID\Liskov Substitution Principle\Problem\" />
       <Folder Include="SOLID\Liskov Substitution Principle\Solution\" />
-      <Folder Include="SOLID\Open-Closed Principle\Problem\" />
-      <Folder Include="SOLID\Open-Closed Principle\Solution\" />
     </ItemGroup>
 
 </Project>
