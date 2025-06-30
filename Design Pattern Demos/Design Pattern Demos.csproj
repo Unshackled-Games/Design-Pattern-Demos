@@ -8,9 +8,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="SOLID\Dependency Inversion Principle\Problem\" />
-      <Folder Include="SOLID\Dependency Inversion Principle\Solution\" />
-    </ItemGroup>
-
 </Project>
