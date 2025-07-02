@@ -14,4 +14,15 @@ public class Demo {
             .Build();
         Console.WriteLine(pizza);
     }
+    
+    public static void RunHTML()
+    {
+        Console.WriteLine("--- HTML problem example ---");
+        var html = new Problem.Html();
+        html.Demo();
+        
+        Console.WriteLine("--- HTML solution example ---");
+        var html2 = new Solution.Html();
+        html2.Demo();
+    }
 }

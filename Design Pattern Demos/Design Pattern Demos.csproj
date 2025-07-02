@@ -13,8 +13,6 @@
       <Folder Include="Patterns\Builder\Faceted Builder\Solution\" />
       <Folder Include="Patterns\Builder\Fluent Builder Inheritance with Recursive generics\Problem\" />
       <Folder Include="Patterns\Builder\Fluent Builder Inheritance with Recursive generics\Solution\" />
-      <Folder Include="Patterns\Builder\Fluent Builder\Problem\" />
-      <Folder Include="Patterns\Builder\Fluent Builder\Solution\" />
       <Folder Include="Patterns\Builder\Functional Builder\Problem\" />
       <Folder Include="Patterns\Builder\Functional Builder\Solution\" />
       <Folder Include="Patterns\Builder\Stepwise Builder\Problem\" />
