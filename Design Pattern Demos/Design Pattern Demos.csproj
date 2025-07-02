@@ -9,8 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Patterns\Builder\Builder\Problem\" />
-      <Folder Include="Patterns\Builder\Builder\Solution\" />
       <Folder Include="Patterns\Builder\Faceted Builder\Problem\" />
       <Folder Include="Patterns\Builder\Faceted Builder\Solution\" />
       <Folder Include="Patterns\Builder\Fluent Builder Inheritance with Recursive generics\Problem\" />
