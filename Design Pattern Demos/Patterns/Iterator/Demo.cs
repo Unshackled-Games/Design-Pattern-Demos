@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace Design_Pattern_Demos.Patterns.Iterator;
 
 public class NumberCollection : IEnumerable<int>
