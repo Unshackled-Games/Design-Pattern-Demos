@@ -1,5 +1,0 @@
-When to use: you need to handle a large number of similar objects efficiently.
-Problem: duplicating shared data across thousands of objects wastes memory.
-How it works: store shared state in flyweight objects and pass unique context externally when needed.
-Benefits: significant memory savings while keeping object-oriented structure intact.
-Example: character glyphs in text rendering share font data but store positions separately.

@@ -1,5 +1,0 @@
-When to use: objects should react to state changes in another object.
-Problem: manual polling or tight coupling between observers and subjects is hard to maintain.
-How it works: observers subscribe to a subject and are notified automatically when changes occur.
-Benefits: promotes loose coupling and enables event-driven systems.
-Example: GUI components updating when underlying data models change.

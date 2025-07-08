@@ -1,5 +1,0 @@
-When to use: complex objects need to be constructed step by step.
-Problem: many constructor parameters or optional parts make instantiation messy.
-How it works: provide a builder with fluent methods to configure parts, then call Build() to get the result.
-Benefits: clearer creation code and guarantees fully initialized objects.
-Example: assembling a car or composing a multi-page document.

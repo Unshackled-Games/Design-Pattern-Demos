@@ -1,5 +1,0 @@
-When to use: an object's behavior must change according to its state.
-Problem: large conditional statements for state transitions become hard to manage.
-How it works: separate state-specific behavior into individual classes implementing a common interface.
-Benefits: simplifies context code and makes state transitions explicit.
-Example: a document that changes permitted actions when in Draft, Review, or Published state.

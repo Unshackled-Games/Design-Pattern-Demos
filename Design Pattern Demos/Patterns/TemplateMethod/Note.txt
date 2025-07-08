@@ -1,5 +1,0 @@
-When to use: enforce the outline of an algorithm while letting subclasses refine steps.
-Problem: similar algorithms implemented in several classes cause duplication.
-How it works: a base class defines a template method calling abstract operations that subclasses override.
-Benefits: ensures consistent workflow and promotes code reuse.
-Example: a data processing pipeline where subclasses supply validation or transformation steps.

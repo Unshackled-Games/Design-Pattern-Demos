@@ -1,5 +1,0 @@
-When to use: manage access to an object that is expensive or sensitive.
-Problem: clients may need lazy initialization, caching, or security checks before using the real object.
-How it works: a proxy implements the same interface and adds the access logic before delegating to the real subject.
-Benefits: transparent control over the actual object and additional behavior without modification.
-Example: virtual proxies loading data on demand or remote proxies controlling network access.

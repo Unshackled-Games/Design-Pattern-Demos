@@ -1,5 +1,0 @@
-When to use: integrate classes with incompatible interfaces.
-Problem: existing code expects one interface while another class provides different methods.
-How it works: write an adapter that implements the expected interface and delegates to the adaptee.
-Benefits: reuse legacy or third-party code without modification.
-Tip: keep adapters lightweight so they only translate calls.

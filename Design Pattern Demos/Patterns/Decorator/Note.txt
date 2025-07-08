@@ -1,5 +1,0 @@
-When to use: add functionality to objects dynamically.
-Problem: subclassing for every feature combination causes class explosion.
-How it works: decorator classes wrap the original object and implement the same interface while adding behavior.
-Benefits: flexibly mix features at runtime without altering the base class.
-Example: adding buffering or compression layers to a stream.

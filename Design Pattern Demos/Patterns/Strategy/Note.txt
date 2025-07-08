@@ -1,5 +1,0 @@
-When to use: choose among multiple algorithms or behaviors at runtime.
-Problem: embedding algorithm choices in conditional statements reduces flexibility.
-How it works: define a family of strategy classes sharing a common interface and switch them interchangeably.
-Benefits: easy to extend algorithms independently from the clients that use them.
-Example: different sorting strategies selected based on data size.

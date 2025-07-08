@@ -1,5 +1,0 @@
-When to use: many objects communicate in complex ways and dependencies must be minimized.
-Problem: direct object references lead to a tangled web of interactions.
-How it works: a mediator object coordinates communication among colleague objects.
-Benefits: centralizes interaction logic and reduces coupling between components.
-Example: a chat room where participants send messages through a mediator.

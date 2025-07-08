@@ -1,5 +1,0 @@
-When to use: object creation logic should be centralized or simplified.
-Problem: client code should not depend on concrete classes or constructors.
-How it works: define a factory method that returns the appropriate subclass based on input or configuration.
-Benefits: decouples instantiation from use and eases substitution of implementations.
-Example: a shape factory that returns different shape objects at runtime.

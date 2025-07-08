@@ -1,5 +1,0 @@
-When to use: eliminate null checks by providing a do-nothing implementation.
-Problem: clients constantly guard against null references before calling methods.
-How it works: supply an object that conforms to the interface but performs neutral behavior.
-Benefits: simplifies calling code and avoids NullReferenceException errors.
-Example: a logger that silently ignores all messages in a production build.
