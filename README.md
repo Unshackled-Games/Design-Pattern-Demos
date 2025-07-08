@@ -1,186 +1,926 @@
-# Design Pattern Demos
+# Design Pattern Registry
 
-This repository is a collection of concise examples demonstrating the SOLID principles and the classic Gang of Four design patterns in C#. It targets **.NET 9** and can be run directly with the `dotnet` SDK. The examples serve as a practical reference for both newcomers and experienced developers, proving that these patterns are very much applicable in production code.
+![.NET 9 SDK](https://img.shields.io/badge/.NET-9-blue)  
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
+
+A curated registry of **22 classic design patterns** demonstrated in C#. This guide gives you everything you need to **build**, **run**, and **apply** these patterns in production—along with decision questions to help you choose the right pattern for your scenario.
+
+> **MythBuster**: Contrary to outdated advice, design patterns are **production-ready** when applied judiciously. These examples mirror real-world use cases and prove that patterns can improve maintainability, extensibility, and clarity in enterprise systems.
+
+---
+
+## Table of Contents
+
+- [Prerequisites](#prerequisites)  
+- [Getting Started](#getting-started)  
+- [Repository Layout](#repository-layout)  
+- [Quick Reference](#quick-reference)  
+- [Pattern Details](#pattern-details)  
+  - [Adapter](#adapter)  
+  - [Bridge](#bridge)  
+  - [Builder](#builder)  
+  - [Chain of Responsibility](#chain-of-responsibility)  
+  - [Command](#command)  
+  - [Composite](#composite)  
+  - [Decorator](#decorator)  
+  - [Facade](#facade)  
+  - [Factory](#factory)  
+  - [Flyweight](#flyweight)  
+  - [Interpreter](#interpreter)  
+  - [Iterator](#iterator)  
+  - [Mediator](#mediator)  
+  - [Memento](#memento)  
+  - [Null Object](#null-object)  
+  - [Observer](#observer)  
+  - [Prototype](#prototype)  
+  - [Proxy](#proxy)  
+  - [Singleton](#singleton)  
+  - [State](#state)  
+  - [Strategy](#strategy)  
+  - [Template Method](#template-method)  
+  - [Visitor](#visitor)  
+- [Production Considerations](#production-considerations)  
+- [License](#license)  
+
+---
+
+## Prerequisites
+
+- [.NET 9 SDK](https://dotnet.microsoft.com/) installed  
+- A C#-capable IDE or editor (Visual Studio, Rider, VS Code, etc.)
+
+---
 
 ## Getting Started
 
-1. Install the [.NET 9 SDK](https://dotnet.microsoft.com/).
-2. Restore and build the solution:
+1. **Clone** the repo:  
+   ```bash
+   git clone https://github.com/your-org/design-pattern-registry.git
+   cd design-pattern-registry
+
+
+2. **Build** the solution:
+
    ```bash
    dotnet build "Design Pattern Demos.sln"
    ```
-3. Run the main demo:
-   ```bash
-   dotnet run --project "Design Pattern Demos"
-   ```
-   You can edit `Program.cs` to invoke any specific demo you wish to showcase.
+3. **Select & Run** a demo:
+
+   * Open `Program.cs`.
+   * Uncomment the desired `Demo.Run()` or `Demo.RunHTML()` line.
+   * In terminal:
+
+     ```bash
+     dotnet run --project "Design Pattern Demos"
+     ```
+
+---
 
 ## Repository Layout
 
-- `Patterns/` – implementations of design patterns with "Problem" and "Solution" folders for comparison.
-- `SOLID/` – demonstrations of the five SOLID principles.
-- `Program.cs` – entry point calling the demos.
+```
+├── Design Pattern Demos.sln
+├── Program.cs               # Entry point: toggle demos here
+├── Patterns/
+│   ├── Adapter/
+│   │   └── Demo.cs
+│   ├── Bridge/
+│   │   └── Demo.cs
+│   ├── Builder/
+│   │   └── Demo.cs
+│   ├── … (other patterns)…  
+│   └── Visitor/
+│       └── Demo.cs
+└── SOLID/                   # Principle demos (SRP, OCP, etc.)
+    └── … 
+```
 
-## Pattern Quick Reference
+---
 
-## Adapter
-When to use: integrate classes with incompatible interfaces.
-Problem: existing code expects one interface while another class provides different methods.
-How it works: write an adapter that implements the expected interface and delegates to the adaptee.
-Benefits: reuse legacy or third-party code without modification.
-Tip: keep adapters lightweight so they only translate calls.
+## Quick Reference
 
-## Bridge
-When to use: separate abstraction from implementation so both can vary.
-Problem: multiple inheritance hierarchies lead to class explosion.
-How it works: create an abstraction interface and an implementation interface linked via composition.
-Benefits: extend either side independently and reduce coupling.
-Example: UI widgets delegating drawing to platform-specific renderers.
+| Pattern                 | Intent                                      | Demo Path                                |
+| ----------------------- | ------------------------------------------- | ---------------------------------------- |
+| Adapter                 | Convert one interface to another            | `Patterns/Adapter/Demo.cs`               |
+| Bridge                  | Decouple abstraction from implementation    | `Patterns/Bridge/Demo.cs`                |
+| Builder                 | Construct complex objects step by step      | `Patterns/Builder/Demo.cs`               |
+| Chain of Responsibility | Pass a request along a chain of handlers    | `Patterns/ChainOfResponsibility/Demo.cs` |
+| Command                 | Encapsulate requests as objects             | `Patterns/Command/Demo.cs`               |
+| Composite               | Compose objects into tree structures        | `Patterns/Composite/Demo.cs`             |
+| Decorator               | Add behavior dynamically via wrapping       | `Patterns/Decorator/Demo.cs`             |
+| Facade                  | Provide a simple interface to a subsystem   | `Patterns/Facade/Demo.cs`                |
+| Factory                 | Centralize object creation logic            | `Patterns/Factory/Demo.cs`               |
+| Flyweight               | Share common data among many objects        | `Patterns/Flyweight/Demo.cs`             |
+| Interpreter             | Define a grammar and interpret sentences    | `Patterns/Interpreter/Demo.cs`           |
+| Iterator                | Sequentially traverse a collection          | `Patterns/Iterator/Demo.cs`              |
+| Mediator                | Centralize complex communications           | `Patterns/Mediator/Demo.cs`              |
+| Memento                 | Capture and restore object state            | `Patterns/Memento/Demo.cs`               |
+| Null Object             | Provide a do-nothing stand-in object        | `Patterns/NullObject/Demo.cs`            |
+| Observer                | Publish/subscribe for event handling        | `Patterns/Observer/Demo.cs`              |
+| Prototype               | Clone objects for efficient creation        | `Patterns/Prototype/Demo.cs`             |
+| Proxy                   | Control access to another object            | `Patterns/Proxy/Demo.cs`                 |
+| Singleton               | Ensure a single global instance             | `Patterns/Singleton/Demo.cs`             |
+| State                   | Change behavior when internal state changes | `Patterns/State/Demo.cs`                 |
+| Strategy                | Swap algorithms at runtime                  | `Patterns/Strategy/Demo.cs`              |
+| Template Method         | Define skeleton of an algorithm             | `Patterns/TemplateMethod/Demo.cs`        |
+| Visitor                 | Add operations without modifying elements   | `Patterns/Visitor/Demo.cs`               |
 
-## Builder
-When to use: complex objects need to be constructed step by step.
-Problem: many constructor parameters or optional parts make instantiation messy.
-How it works: provide a builder with fluent methods to configure parts, then call Build() to get the result.
-Benefits: clearer creation code and guarantees fully initialized objects.
-Example: assembling a car or composing a multi-page document.
+---
 
-## ChainOfResponsibility
-When to use: several handlers may respond to the same request.
-Problem: chaining if/else statements couples clients to specific handlers.
-How it works: each handler processes the request or passes it to the next handler in the chain.
-Benefits: dynamic composition and flexible ordering of responsibilities.
-Example: middleware pipelines or UI event bubbling.
+## Pattern Details
 
-## Command
-When to use: requests should be parameterized or queued as objects.
-Problem: callers are tightly coupled to the specific actions they invoke.
-How it works: encapsulate an action and its receiver inside a command class with Execute().
-Benefits: enables undo/redo, logging, and flexible invocation of operations.
-Example: menu items creating command objects executed by an invoker.
+### Adapter
 
-## Composite
-When to use: work with individual objects and groups through one interface.
-Problem: special-casing leaves and groups makes client code complex.
-How it works: define a component interface implemented by both leaf and composite classes.
-Benefits: treats the whole structure uniformly and simplifies hierarchy management.
-Example: graphics editors where shapes can be nested groups.
+* **Intent**
+  Convert the interface of a class into one that clients expect.
 
-## Decorator
-When to use: add functionality to objects dynamically.
-Problem: subclassing for every feature combination causes class explosion.
-How it works: decorator classes wrap the original object and implement the same interface while adding behavior.
-Benefits: flexibly mix features at runtime without altering the base class.
-Example: adding buffering or compression layers to a stream.
+* **Context / When to Use**
+  Reusing legacy or third-party code whose interface doesn’t match your own.
 
-## Facade
-When to use: simplify interaction with a complex subsystem.
-Problem: clients must know about many subsystem classes and their coordination.
-How it works: a facade provides high-level methods that delegate to the subsystem components.
-Benefits: reduces coupling and hides intricate subsystem details.
-Example: a media facade offering play/stop methods while orchestrating audio and video classes.
+* **Problem**
+  Client code depends on a specific interface; you cannot modify the existing class.
 
-## Factory
-When to use: object creation logic should be centralized or simplified.
-Problem: client code should not depend on concrete classes or constructors.
-How it works: define a factory method that returns the appropriate subclass based on input or configuration.
-Benefits: decouples instantiation from use and eases substitution of implementations.
-Example: a shape factory that returns different shape objects at runtime.
+* **Solution**
+  Create an adapter that implements the target interface and delegates calls to the adaptee.
 
-## Flyweight
-When to use: you need to handle a large number of similar objects efficiently.
-Problem: duplicating shared data across thousands of objects wastes memory.
-How it works: store shared state in flyweight objects and pass unique context externally when needed.
-Benefits: significant memory savings while keeping object-oriented structure intact.
-Example: character glyphs in text rendering share font data but store positions separately.
+* **Benefits**
 
-## Interpreter
-When to use: represent and evaluate sentences in a simple language or grammar.
-Problem: expression parsing scattered in code becomes hard to maintain.
-How it works: model grammar rules as classes with an Interpret method.
-Benefits: easy to extend with new expressions and keeps parsing logic clean.
-Example: arithmetic expression evaluation or simple scripting languages.
+   * Allows code reuse without modifying existing classes
+   * Decouples client from service implementation
 
-## Iterator
-When to use: traverse elements of a collection without exposing its structure.
-Problem: clients depend on collection implementation to loop through items.
-How it works: an iterator object provides operations to access elements sequentially.
-Benefits: multiple traversals and different iteration strategies become possible.
-Example: IEnumerable and IEnumerator interfaces in C#.
+* **Demo**
 
-## Mediator
-When to use: many objects communicate in complex ways and dependencies must be minimized.
-Problem: direct object references lead to a tangled web of interactions.
-How it works: a mediator object coordinates communication among colleague objects.
-Benefits: centralizes interaction logic and reduces coupling between components.
-Example: a chat room where participants send messages through a mediator.
+  ```csharp
+  Patterns.Adapter.Demo.Run();
+  ```
 
-## Memento
-When to use: provide undo or rollback functionality without exposing internal state.
-Problem: storing state externally violates encapsulation.
-How it works: the originator creates a memento object representing its state and restores from it when needed.
-Benefits: encapsulated snapshots enable undo stacks and state checkpoints.
-Example: text editors storing previous document versions for undo.
+  See [`Patterns/Adapter/Demo.cs`](Patterns/Adapter/Demo.cs).
 
-## NullObject
-When to use: eliminate null checks by providing a do-nothing implementation.
-Problem: clients constantly guard against null references before calling methods.
-How it works: supply an object that conforms to the interface but performs neutral behavior.
-Benefits: simplifies calling code and avoids NullReferenceException errors.
-Example: a logger that silently ignores all messages in a production build.
+* **Decision Questions**
 
-## Observer
-When to use: objects should react to state changes in another object.
-Problem: manual polling or tight coupling between observers and subjects is hard to maintain.
-How it works: observers subscribe to a subject and are notified automatically when changes occur.
-Benefits: promotes loose coupling and enables event-driven systems.
-Example: GUI components updating when underlying data models change.
+   * Do you need to integrate code whose interface you cannot change?
+   * Is there an impedance mismatch between two interfaces you must connect?
 
-## Prototype
-When to use: creating new objects is expensive or complex.
-Problem: constructing an object from scratch involves many steps or resource usage.
-How it works: clone an existing prototype to produce new objects quickly.
-Benefits: simplified creation of similar objects and reduced initialization cost.
-Example: duplicating graphic elements in a drawing application.
+---
 
-## Proxy
-When to use: manage access to an object that is expensive or sensitive.
-Problem: clients may need lazy initialization, caching, or security checks before using the real object.
-How it works: a proxy implements the same interface and adds the access logic before delegating to the real subject.
-Benefits: transparent control over the actual object and additional behavior without modification.
-Example: virtual proxies loading data on demand or remote proxies controlling network access.
+### Bridge
 
-## Singleton
-When to use: exactly one instance of a class must coordinate actions globally.
-Problem: multiple instances would cause inconsistent behavior or wasted resources.
-How it works: the class exposes a static Instance property that lazily creates the sole object.
-Benefits: controlled global access and lazy initialization when first needed.
-Example: an application-wide configuration or logging service.
+* **Intent**
+  Decouple an abstraction from its implementation.
 
-## State
-When to use: an object's behavior must change according to its state.
-Problem: large conditional statements for state transitions become hard to manage.
-How it works: separate state-specific behavior into individual classes implementing a common interface.
-Benefits: simplifies context code and makes state transitions explicit.
-Example: a document that changes permitted actions when in Draft, Review, or Published state.
+* **Context / When to Use**
+  Both the abstractions and their implementations should vary independently.
 
-## Strategy
-When to use: choose among multiple algorithms or behaviors at runtime.
-Problem: embedding algorithm choices in conditional statements reduces flexibility.
-How it works: define a family of strategy classes sharing a common interface and switch them interchangeably.
-Benefits: easy to extend algorithms independently from the clients that use them.
-Example: different sorting strategies selected based on data size.
+* **Problem**
+  Class hierarchies explode when you combine multiple abstractions with multiple implementations.
 
-## TemplateMethod
-When to use: enforce the outline of an algorithm while letting subclasses refine steps.
-Problem: similar algorithms implemented in several classes cause duplication.
-How it works: a base class defines a template method calling abstract operations that subclasses override.
-Benefits: ensures consistent workflow and promotes code reuse.
-Example: a data processing pipeline where subclasses supply validation or transformation steps.
+* **Solution**
+  Define interfaces for abstraction and implementation, then compose them at runtime.
 
-## Visitor
-When to use: add new operations across a set of objects without modifying them.
-Problem: adding behavior requires changing every class in the structure.
-How it works: implement visitor objects with visit methods for each element and let elements accept a visitor.
-Benefits: extend functionality easily while keeping element classes stable.
-Example: traversing an AST to generate code or compute statistics.
+* **Benefits**
 
+   * Extends abstractions and implementations independently
+   * Reduces coupling between high-level and low-level modules
+
+* **Demo**
+
+  ```csharp
+  Patterns.Bridge.Demo.Run();
+  ```
+
+  See [`Patterns/Bridge/Demo.cs`](Patterns/Bridge/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you have orthogonal dimensions of variation in your classes?
+   * Would you benefit from swapping implementations at runtime?
+
+---
+
+### Builder
+
+* **Intent**
+  Construct complex objects step by step.
+
+* **Context / When to Use**
+  Objects require numerous optional parameters or construction steps.
+
+* **Problem**
+  Telescoping constructors or inconsistent object states are error-prone.
+
+* **Solution**
+  Provide a builder with fluent methods to configure and then create the object.
+
+* **Benefits**
+
+   * Clear, readable construction code
+   * Ensures fully initialized, valid objects
+
+* **Demo**
+
+  ```csharp
+  Patterns.Builder.Demo.RunHTML();
+  ```
+
+  See [`Patterns/Builder/Demo.cs`](Patterns/Builder/Demo.cs).
+
+* **Decision Questions**
+
+   * Are you struggling with constructors that take too many parameters?
+   * Do you need to enforce mandatory steps or combinations before creation?
+
+---
+
+### Chain of Responsibility
+
+* **Intent**
+  Pass a request along a chain of handlers until one handles it.
+
+* **Context / When to Use**
+  Multiple objects may handle a request, but the sender shouldn’t know which one does.
+
+* **Problem**
+  Hard-coded if/else chains or tight coupling between sender and receivers.
+
+* **Solution**
+  Link handler objects in a chain, each deciding to handle or forward the request.
+
+* **Benefits**
+
+   * Flexible assignment of responsibilities
+   * Loose coupling between senders and receivers
+
+* **Demo**
+
+  ```csharp
+  Patterns.ChainOfResponsibility.Demo.Run();
+  ```
+
+  See [`Patterns/ChainOfResponsibility/Demo.cs`](Patterns/ChainOfResponsibility/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you have multiple potential handlers for the same request?
+   * Would you like to configure handler order dynamically?
+
+---
+
+### Command
+
+* **Intent**
+  Encapsulate a request as an object.
+
+* **Context / When to Use**
+  You need to parameterize clients with operations, support undo/redo, or queue commands.
+
+* **Problem**
+  Caller is tightly coupled to the actions it invokes.
+
+* **Solution**
+  Create command objects that implement an `Execute()` method and possibly `Undo()`.
+
+* **Benefits**
+
+   * Supports undo/redo and logging
+   * Decouples sender and receiver
+
+* **Demo**
+
+  ```csharp
+  Patterns.Command.Demo.Run();
+  ```
+
+  See [`Patterns/Command/Demo.cs`](Patterns/Command/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you need to queue, log, or undo operations?
+   * Do callers need to be decoupled from the execution logic?
+
+---
+
+### Composite
+
+* **Intent**
+  Compose objects into tree structures and treat them uniformly.
+
+* **Context / When to Use**
+  You have part-whole hierarchies of objects.
+
+* **Problem**
+  Clients must distinguish between leaf and composite objects.
+
+* **Solution**
+  Define a common interface for leaves and containers, and compose recursively.
+
+* **Benefits**
+
+   * Simplifies client code
+   * Makes tree structures transparent to users
+
+* **Demo**
+
+  ```csharp
+  Patterns.Composite.Demo.Run();
+  ```
+
+  See [`Patterns/Composite/Demo.cs`](Patterns/Composite/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you have recursive, tree-like object structures?
+   * Should clients treat individual objects and compositions uniformly?
+
+---
+
+### Decorator
+
+* **Intent**
+  Add responsibilities to objects at runtime.
+
+* **Context / When to Use**
+  You need flexible combinations of behaviors without an explosion of subclasses.
+
+* **Problem**
+  Subclassing for every feature combination is unsustainable.
+
+* **Solution**
+  Wrap the original object with decorator classes that implement the same interface.
+
+* **Benefits**
+
+   * Mix and match behaviors at runtime
+   * Open for extension, closed for modification
+
+* **Demo**
+
+  ```csharp
+  Patterns.Decorator.Demo.Run();
+  ```
+
+  See [`Patterns/Decorator/Demo.cs`](Patterns/Decorator/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you need to add or remove features dynamically?
+   * Can you wrap objects instead of modifying their code?
+
+---
+
+### Facade
+
+* **Intent**
+  Provide a unified, simple interface to a complex subsystem.
+
+* **Context / When to Use**
+  Clients must interact with multiple classes in a subsystem.
+
+* **Problem**
+  Clients become tightly coupled to many subsystem classes and protocols.
+
+* **Solution**
+  Create a facade class that exposes high-level operations and delegates internally.
+
+* **Benefits**
+
+   * Reduces coupling to subsystem details
+   * Simplifies client code
+
+* **Demo**
+
+  ```csharp
+  Patterns.Facade.Demo.Run();
+  ```
+
+  See [`Patterns/Facade/Demo.cs`](Patterns/Facade/Demo.cs).
+
+* **Decision Questions**
+
+   * Do clients need a simpler entry point to a complex API?
+   * Can you centralize coordination logic in one class?
+
+---
+
+### Factory
+
+* **Intent**
+  Centralize object creation logic.
+
+* **Context / When to Use**
+  You need to decouple clients from concrete classes or vary products at runtime.
+
+* **Problem**
+  Clients depend on constructors or concrete types.
+
+* **Solution**
+  Provide a factory method or class that returns instances based on input.
+
+* **Benefits**
+
+   * Encapsulates creation logic
+   * Makes substitution of implementations easy
+
+* **Demo**
+
+  ```csharp
+  Patterns.Factory.Demo.Run();
+  ```
+
+  See [`Patterns/Factory/Demo.cs`](Patterns/Factory/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you need to hide which concrete class you instantiate?
+   * Will you add new product types in the future?
+
+---
+
+### Flyweight
+
+* **Intent**
+  Share intrinsic state among many fine-grained objects.
+
+* **Context / When to Use**
+  You must create large numbers of similar objects.
+
+* **Problem**
+  Memory usage balloons when each object holds the same data.
+
+* **Solution**
+  Store shared state in flyweight objects and pass unique context externally.
+
+* **Benefits**
+
+   * Significant memory savings
+   * Maintains object-oriented design
+
+* **Demo**
+
+  ```csharp
+  Patterns.Flyweight.Demo.Run();
+  ```
+
+  See [`Patterns/Flyweight/Demo.cs`](Patterns/Flyweight/Demo.cs).
+
+* **Decision Questions**
+
+   * Are you instantiating thousands of similar objects?
+   * Can you separate shared (intrinsic) from unique (extrinsic) state?
+
+---
+
+### Interpreter
+
+* **Intent**
+  Define a representation for a grammar and an interpreter.
+
+* **Context / When to Use**
+  You have a language to evaluate or parse at runtime.
+
+* **Problem**
+  Ad-hoc parsing code grows complex and hard to extend.
+
+* **Solution**
+  Model grammar rules as classes with an `Interpret()` method.
+
+* **Benefits**
+
+   * Extensible grammar
+   * Cleaner parsing logic
+
+* **Demo**
+
+  ```csharp
+  Patterns.Interpreter.Demo.Run();
+  ```
+
+  See [`Patterns/Interpreter/Demo.cs`](Patterns/Interpreter/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you need to interpret or evaluate expressions?
+   * Will your language or grammar evolve over time?
+
+---
+
+### Iterator
+
+* **Intent**
+  Provide a way to access elements of a collection sequentially.
+
+* **Context / When to Use**
+  You want to hide the internal structure of a collection.
+
+* **Problem**
+  Clients depend on concrete collection types for traversal.
+
+* **Solution**
+  Implement an iterator object with `MoveNext()` and `Current`.
+
+* **Benefits**
+
+   * Multiple, independent traversals
+   * Supports different traversal strategies
+
+* **Demo**
+
+  ```csharp
+  Patterns.Iterator.Demo.Run();
+  ```
+
+  See [`Patterns/Iterator/Demo.cs`](Patterns/Iterator/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you need multiple cursors over a collection?
+   * Should clients be ignorant of the collection’s internals?
+
+---
+
+### Mediator
+
+* **Intent**
+  Define an object that encapsulates how a set of objects interact.
+
+* **Context / When to Use**
+  Many components communicate in complex ways.
+
+* **Problem**
+  Direct references lead to a tangled web of interactions.
+
+* **Solution**
+  Centralize communication in a mediator object.
+
+* **Benefits**
+
+   * Reduces coupling between colleagues
+   * Simplifies maintenance of interaction logic
+
+* **Demo**
+
+  ```csharp
+  Patterns.Mediator.Demo.Run();
+  ```
+
+  See [`Patterns/Mediator/Demo.cs`](Patterns/Mediator/Demo.cs).
+
+* **Decision Questions**
+
+   * Do components communicate in unpredictable ways?
+   * Would a central coordinator simplify your design?
+
+---
+
+### Memento
+
+* **Intent**
+  Capture and restore an object’s internal state without violating encapsulation.
+
+* **Context / When to Use**
+  You need undo/rollback functionality.
+
+* **Problem**
+  Storing state externally exposes internals.
+
+* **Solution**
+  Originator creates a memento object; caretaker stores it for later restoration.
+
+* **Benefits**
+
+   * Encapsulated snapshots
+   * Clean undo stacks
+
+* **Demo**
+
+  ```csharp
+  Patterns.Memento.Demo.Run();
+  ```
+
+  See [`Patterns/Memento/Demo.cs`](Patterns/Memento/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you need to rollback to previous states?
+   * Can you encapsulate all state needed into a memento?
+
+---
+
+### Null Object
+
+* **Intent**
+  Provide a non-functional object to avoid null checks.
+
+* **Context / When to Use**
+  You have many null checks scattered in client code.
+
+* **Problem**
+  Clients guard against `null` before each use, cluttering code.
+
+* **Solution**
+  Implement a do-nothing object that conforms to the interface.
+
+* **Benefits**
+
+   * Eliminates null checks
+   * Simplifies client logic
+
+* **Demo**
+
+  ```csharp
+  Patterns.NullObject.Demo.Run();
+  ```
+
+  See [`Patterns/NullObject/Demo.cs`](Patterns/NullObject/Demo.cs).
+
+* **Decision Questions**
+
+   * Are you littering code with null guards?
+   * Can you replace `null` with a harmless stub?
+
+---
+
+### Observer
+
+* **Intent**
+  Define a one-to-many subscription mechanism.
+
+* **Context / When to Use**
+  Objects should be notified of state changes in other objects.
+
+* **Problem**
+  Tight coupling or manual polling between subjects and observers.
+
+* **Solution**
+  Observers register with a subject and receive automatic updates.
+
+* **Benefits**
+
+   * Loose coupling
+   * Supports event-driven designs
+
+* **Demo**
+
+  ```csharp
+  Patterns.Observer.Demo.Run();
+  ```
+
+  See [`Patterns/Observer/Demo.cs`](Patterns/Observer/Demo.cs).
+
+* **Decision Questions**
+
+   * Do multiple components react to the same events?
+   * Would you prefer push notifications over polling?
+
+---
+
+### Prototype
+
+* **Intent**
+  Specify the kind of objects to create using a prototypical instance.
+
+* **Context / When to Use**
+  Object creation is expensive or complex.
+
+* **Problem**
+  Constructors with many parameters or resource-heavy initialization.
+
+* **Solution**
+  Clone a prototype instance with a `Clone()` method.
+
+* **Benefits**
+
+   * Fast object creation
+   * Avoids constructor explosion
+
+* **Demo**
+
+  ```csharp
+  Patterns.Prototype.Demo.Run();
+  ```
+
+  See [`Patterns/Prototype/Demo.cs`](Patterns/Prototype/Demo.cs).
+
+* **Decision Questions**
+
+   * Is cloning cheaper than constructing from scratch?
+   * Can you deep-copy all necessary state reliably?
+
+---
+
+### Proxy
+
+* **Intent**
+  Provide a surrogate for another object to control access.
+
+* **Context / When to Use**
+  You need lazy loading, caching, or access control.
+
+* **Problem**
+  Clients must handle initialization, security checks, or remote calls.
+
+* **Solution**
+  Proxy implements the same interface and adds logic before delegating.
+
+* **Benefits**
+
+   * Transparent control over the real subject
+   * Supports lazy, remote, and security proxies
+
+* **Demo**
+
+  ```csharp
+  Patterns.Proxy.Demo.Run();
+  ```
+
+  See [`Patterns/Proxy/Demo.cs`](Patterns/Proxy/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you need to defer object creation or enforce security?
+   * Can you hide the real subject behind a surrogate?
+
+---
+
+### Singleton
+
+* **Intent**
+  Ensure a class has only one instance and provide a global access point.
+
+* **Context / When to Use**
+  A single shared resource (e.g., configuration, logger).
+
+* **Problem**
+  Multiple instances lead to inconsistent behavior or wasted resources.
+
+* **Solution**
+  Use a static property that lazily creates and returns the sole instance.
+
+* **Benefits**
+
+   * Controlled single instance
+   * Lazy initialization
+
+* **Demo**
+
+  ```csharp
+  Patterns.Singleton.Demo.Run();
+  ```
+
+  See [`Patterns/Singleton/Demo.cs`](Patterns/Singleton/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you absolutely need a single, shared instance?
+   * Could dependency injection be a better alternative?
+
+---
+
+### State
+
+* **Intent**
+  Allow an object to alter its behavior when its internal state changes.
+
+* **Context / When to Use**
+  An object’s behavior must change in response to state transitions.
+
+* **Problem**
+  Conditional statements for each state become unwieldy.
+
+* **Solution**
+  Encapsulate state-specific behavior in separate classes implementing a common interface.
+
+* **Benefits**
+
+   * Removes bulky conditional logic
+   * Makes state transitions explicit
+
+* **Demo**
+
+  ```csharp
+  Patterns.State.Demo.Run();
+  ```
+
+  See [`Patterns/State/Demo.cs`](Patterns/State/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you have many `if/else` or `switch` blocks based on state?
+   * Can you represent each state as a separate class?
+
+---
+
+### Strategy
+
+* **Intent**
+  Define a family of algorithms and make them interchangeable.
+
+* **Context / When to Use**
+  A class uses one of several algorithms based on configuration or context.
+
+* **Problem**
+  Hard-coded conditional logic to select algorithms.
+
+* **Solution**
+  Encapsulate each algorithm in its own class and compose at runtime.
+
+* **Benefits**
+
+   * Simplifies adding new algorithms
+   * Promotes the Open/Closed Principle
+
+* **Demo**
+
+  ```csharp
+  Patterns.Strategy.Demo.Run();
+  ```
+
+  See [`Patterns/Strategy/Demo.cs`](Patterns/Strategy/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you choose behavior via conditional logic?
+   * Would you benefit from swapping algorithms without code changes?
+
+---
+
+### Template Method
+
+* **Intent**
+  Define the skeleton of an algorithm, deferring steps to subclasses.
+
+* **Context / When to Use**
+  Multiple classes share the same algorithm structure but differ in steps.
+
+* **Problem**
+  Duplicated code across similar algorithms.
+
+* **Solution**
+  Implement an abstract base class with a template method that calls abstract operations.
+
+* **Benefits**
+
+   * Ensures consistent workflow
+   * Promotes code reuse
+
+* **Demo**
+
+  ```csharp
+  Patterns.TemplateMethod.Demo.Run();
+  ```
+
+  See [`Patterns/TemplateMethod/Demo.cs`](Patterns/TemplateMethod/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you share an algorithm’s outline but vary individual steps?
+   * Can you extract common sequence logic into a base class?
+
+---
+
+### Visitor
+
+* **Intent**
+  Represent an operation to be performed on elements of an object structure.
+
+* **Context / When to Use**
+  You frequently add new operations on a fixed set of object classes.
+
+* **Problem**
+  Adding behavior requires modifying every class in the structure.
+
+* **Solution**
+  Create visitor classes with `Visit()` methods for each element type; elements accept visitors.
+
+* **Benefits**
+
+   * Easy to add new operations
+   * Keeps element classes stable
+
+* **Demo**
+
+  ```csharp
+  Patterns.Visitor.Demo.Run();
+  ```
+
+  See [`Patterns/Visitor/Demo.cs`](Patterns/Visitor/Demo.cs).
+
+* **Decision Questions**
+
+   * Do you need to add operations without changing element classes?
+   * Is your object structure stable but operations vary?
+
+---
+
+## Production Considerations
+
+* **Performance**: Patterns add indirection. Measure and optimize critical paths.
+* **Thread Safety**: Ensure singletons and shared flyweights are thread-safe.
+* **Dependency Injection**: Combine factories, strategies, and singletons with DI containers.
+* **Maintainability**: Overuse can over-engineer; apply patterns only when they solve concrete problems.
+* **Community & Frameworks**: Many libraries (e.g., ASP.NET Core, EF Core) leverage these patterns—so can you!
+
+---
+
+## License
+
+This registry is released under the [MIT License](LICENSE). Feel free to adapt and extend these demos for your teams and projects.
