@@ -1,0 +1,5 @@
+When to use: creating new objects is expensive or complex.
+Problem: constructing an object from scratch involves many steps or resource usage.
+How it works: clone an existing prototype to produce new objects quickly.
+Benefits: simplified creation of similar objects and reduced initialization cost.
+Example: duplicating graphic elements in a drawing application.

@@ -1,0 +1,5 @@
+When to use: several handlers may respond to the same request.
+Problem: chaining if/else statements couples clients to specific handlers.
+How it works: each handler processes the request or passes it to the next handler in the chain.
+Benefits: dynamic composition and flexible ordering of responsibilities.
+Example: middleware pipelines or UI event bubbling.

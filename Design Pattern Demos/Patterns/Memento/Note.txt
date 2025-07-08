@@ -1,0 +1,5 @@
+When to use: provide undo or rollback functionality without exposing internal state.
+Problem: storing state externally violates encapsulation.
+How it works: the originator creates a memento object representing its state and restores from it when needed.
+Benefits: encapsulated snapshots enable undo stacks and state checkpoints.
+Example: text editors storing previous document versions for undo.

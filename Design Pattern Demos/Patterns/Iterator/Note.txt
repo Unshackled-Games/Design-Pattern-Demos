@@ -1,0 +1,5 @@
+When to use: traverse elements of a collection without exposing its structure.
+Problem: clients depend on collection implementation to loop through items.
+How it works: an iterator object provides operations to access elements sequentially.
+Benefits: multiple traversals and different iteration strategies become possible.
+Example: IEnumerable and IEnumerator interfaces in C#.

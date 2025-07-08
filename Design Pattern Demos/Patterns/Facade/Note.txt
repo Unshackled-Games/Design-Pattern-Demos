@@ -1,0 +1,5 @@
+When to use: simplify interaction with a complex subsystem.
+Problem: clients must know about many subsystem classes and their coordination.
+How it works: a facade provides high-level methods that delegate to the subsystem components.
+Benefits: reduces coupling and hides intricate subsystem details.
+Example: a media facade offering play/stop methods while orchestrating audio and video classes.

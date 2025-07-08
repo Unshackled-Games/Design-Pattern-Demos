@@ -1,0 +1,5 @@
+When to use: exactly one instance of a class must coordinate actions globally.
+Problem: multiple instances would cause inconsistent behavior or wasted resources.
+How it works: the class exposes a static Instance property that lazily creates the sole object.
+Benefits: controlled global access and lazy initialization when first needed.
+Example: an application-wide configuration or logging service.

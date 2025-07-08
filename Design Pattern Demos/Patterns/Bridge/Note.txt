@@ -1,0 +1,5 @@
+When to use: separate abstraction from implementation so both can vary.
+Problem: multiple inheritance hierarchies lead to class explosion.
+How it works: create an abstraction interface and an implementation interface linked via composition.
+Benefits: extend either side independently and reduce coupling.
+Example: UI widgets delegating drawing to platform-specific renderers.

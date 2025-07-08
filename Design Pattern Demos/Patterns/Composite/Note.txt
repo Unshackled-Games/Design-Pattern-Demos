@@ -1,0 +1,5 @@
+When to use: work with individual objects and groups through one interface.
+Problem: special-casing leaves and groups makes client code complex.
+How it works: define a component interface implemented by both leaf and composite classes.
+Benefits: treats the whole structure uniformly and simplifies hierarchy management.
+Example: graphics editors where shapes can be nested groups.

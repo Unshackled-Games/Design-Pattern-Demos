@@ -1,0 +1,5 @@
+When to use: represent and evaluate sentences in a simple language or grammar.
+Problem: expression parsing scattered in code becomes hard to maintain.
+How it works: model grammar rules as classes with an Interpret method.
+Benefits: easy to extend with new expressions and keeps parsing logic clean.
+Example: arithmetic expression evaluation or simple scripting languages.

@@ -1,0 +1,5 @@
+When to use: requests should be parameterized or queued as objects.
+Problem: callers are tightly coupled to the specific actions they invoke.
+How it works: encapsulate an action and its receiver inside a command class with Execute().
+Benefits: enables undo/redo, logging, and flexible invocation of operations.
+Example: menu items creating command objects executed by an invoker.

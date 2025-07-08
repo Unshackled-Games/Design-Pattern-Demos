@@ -1,0 +1,5 @@
+When to use: add new operations across a set of objects without modifying them.
+Problem: adding behavior requires changing every class in the structure.
+How it works: implement visitor objects with visit methods for each element and let elements accept a visitor.
+Benefits: extend functionality easily while keeping element classes stable.
+Example: traversing an AST to generate code or compute statistics.
