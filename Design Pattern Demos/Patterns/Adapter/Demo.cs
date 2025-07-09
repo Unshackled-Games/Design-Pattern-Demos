@@ -1,27 +1,27 @@
 namespace Design_Pattern_Demos.Patterns.Adapter;
 
-public interface ITarget
+public interface ILogger
 {
-    string Request();
+    void Log(string message);
 }
 
-public class Adaptee
+public class LegacyLogger
 {
-    public string SpecificRequest() => "Adaptee";
+    public void WriteMessage(string msg) => Console.WriteLine($"Legacy: {msg}");
 }
 
-public class Adapter : ITarget
+public class LoggerAdapter : ILogger
 {
-    private readonly Adaptee _adaptee;
-    public Adapter(Adaptee adaptee) => _adaptee = adaptee;
-    public string Request() => _adaptee.SpecificRequest();
+    private readonly LegacyLogger _legacy;
+    public LoggerAdapter(LegacyLogger legacy) => _legacy = legacy;
+    public void Log(string message) => _legacy.WriteMessage(message);
 }
 
 public class Demo
 {
     public static void Run()
     {
-        ITarget target = new Adapter(new Adaptee());
-        Console.WriteLine(target.Request());
+        ILogger logger = new LoggerAdapter(new LegacyLogger());
+        logger.Log("Adapter pattern in action");
     }
 }
